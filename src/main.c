@@ -191,13 +191,13 @@ void menu_task(void *pvArgs) {
 			display_main_menu();
 
 			readInput(input_buff, 1); //Get users choice here
-			printStr(input_buff);
+			printStr(input_buff); //Display users own input
 
 			if(input_buff[0] == '0') { //Continuous read mode
-				if(send_choice(0) != 0) printStr("Failed to enter continuous read mode");
+				if(send_choice(0) != 0) printStr("Failed to enter continuous read mode"); //Error checking (possible to get specific error)
 
 			} else if(input_buff[0] == '1') { //Single read mode
-				if(send_choice(1) != 0) printStr("Failed to enter single read mode");
+				if(send_choice(1) != 0) printStr("Failed to enter single read mode"); //Error checking (possible to get specific error)
 			}
 
 			else { //If invalid number is entered
@@ -249,7 +249,7 @@ void read_task(void *pvArgs) {
 
 						user_input_total[i-1] = 0;
 
-						newLine();
+						clrScr();
 						printStr("You entered '");
 						printStr(user_input_total);
 						printStr("' in total.");
@@ -280,7 +280,7 @@ void read_task(void *pvArgs) {
 					newLine();
 
 					if(input_buffer[0] == '-') {
-						newLine();
+						clrScr();
 						printStr("You entered '");
 						printStr(user_input_total);
 						printStr("' in total.");
