@@ -226,7 +226,7 @@ void read_task(void *pvArgs) {
 
 			if(choice_to_receive == 0) { //Continuous read mode
 
-				printStr("You entered continuous read mode. Press '-' to stop continuous read mode and return to main menu");
+				printStr("You entered continuous read mode. Press ESC to stop continuous read mode and return to main menu");
 				newLine();
 
 				TickType_t xLastWake = 0; //
@@ -245,7 +245,7 @@ void read_task(void *pvArgs) {
 					}
 
 
-					if(input_buffer[0] == '-') {
+					if(input_buffer[0] == 0x1b) { //Escape key in ASCII
 
 						user_input_total[i-1] = 0;
 
@@ -271,7 +271,7 @@ void read_task(void *pvArgs) {
 
 			} else if(choice_to_receive == 1) { //Single read mode
 
-				printStr("You entered single read mode. Press '-' to stop single read mode and return to main menu.");
+				printStr("You entered single read mode. Press ESC to stop single read mode and return to main menu.");
 				newLine();
 
 				while(1) {
@@ -279,7 +279,7 @@ void read_task(void *pvArgs) {
 					printStr(input_buffer);
 					newLine();
 
-					if(input_buffer[0] == '-') {
+					if(input_buffer[0] == 0x1b) { //Escape key in ASCII
 						clrScr();
 						printStr("You entered '");
 						printStr(user_input_total);
